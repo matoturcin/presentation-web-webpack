@@ -83,3 +83,10 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Optional REPL history
+.node_repl_history
+/nbproject/private/
+/dist/
+/typings/
+/nbproject/

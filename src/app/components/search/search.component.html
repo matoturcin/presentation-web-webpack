@@ -1,0 +1,21 @@
+<div id="search-component">
+    <h4>Hero Search</h4>
+    <div id="custom-search-input">
+        <div class="input-group col-md-12">
+            <input type="text" class="form-control input-lg" #searchBox id="search-box" [(ngModel)]="product.name" (keypress)="eventHandler($event)" (keyup)="search(searchBox.value)" placeholder="Product name" />
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+    <div *ngIf="showResults">
+        <ul>
+            <li *ngFor="let product of products | async"
+                (click)="searchProducts(product)" class="search-result-item" >
+                <a>{{product.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

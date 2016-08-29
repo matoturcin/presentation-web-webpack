@@ -1,0 +1,61 @@
+.products-area span{
+    float: left;
+}
+
+.products-area span.product-id{
+    width: 5%;
+    margin: 5px;
+}
+
+.products-area span.product-name{
+    width: 15%;
+}
+
+.products-area span.product-description{
+    width: 65%;
+}
+
+.products-area span.product-buttons{
+    width: 10%;
+}
+
+.products-area{
+    margin-top: 20px;
+}
+
+.ng-valid[required] {
+    border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid {
+    border-left: 5px solid #a94442; /* red */
+}
+
+a{
+    cursor: pointer;
+    padding: 0 10px 0 10px;
+}
+
+a.delete-link {
+    color: #a94442;
+}
+
+.products-area .list-group-item{
+    margin-bottom: 5px;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+.products-area .list-group-item:hover{
+    transform: translateX(5px);    
+    background-color: #d9edf7;
+}
+
+.products-area .highlight{
+    transform: translateX(5px);
+    background: #add0db;
+}
+
+.product-info{
+    cursor: pointer;
+}
+

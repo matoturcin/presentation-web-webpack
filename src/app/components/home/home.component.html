@@ -1,0 +1,93 @@
+<h2>{{ 'home.title' | translate:{value: param} }}</h2>
+<!--<product-search (parentAction)="parentAction($event)"></product-search>-->
+<div class="search-area">
+    <div id="custom-search-input">
+        <div class="input-group col-md-12">
+            <input type="text" class="form-control input-lg" placeholder="Product name" id="search-box" #searchBox               
+                   [(ngModel)]="product.name" 
+                   (keyup)="search(searchBox.value)"  />
+            <span class="input-group-btn">
+                <button class="btn btn-info btn-lg" type="button">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </span>
+        </div>
+    </div>
+
+    <a (click)="clearSearch()">clear search</a>
+</div>
+
+<button type="button" class="btn btn-info btn-lg" (click)=resetForm() data-toggle="modal" data-target="#myModal">Add product</button>
+
+<div class="products-area">
+
+    <ul class="list-group">
+        <div>
+        <li class="list-group-item" [class.highlight]="product.id == selectedId" *ngFor="let product of products | async">
+            <div class="product-info" routerLink="/home/{{product.id}}">
+                <span class="product-id badge">{{product.id}}</span>
+                <span class="product-name">  {{product.name}} </span>
+                <span (click)=onSelect(product) class="product-description">{{product.description}}</span>
+            </div>
+            <div class="product-buttons">
+                <a data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-pencil" (click)=onEdit(product) ></a>
+                <a (click)=onDelete(product) class="delete-link glyphicon glyphicon-trash"></a>
+            </div>
+        </li>
+        </div>
+    </ul>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Modal Header</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form *ngIf="active" (ngSubmit)="onSubmit()" #productForm="ngForm">
+
+                            <div class="form-group">
+                                <label for="product-id">Id</label>
+                                <input [disabled]="edit" type="text" class="form-control" id="product-id"
+                                    required pattern="[0-9]*"
+                                    [(ngModel)]="newProduct.id" name="id"
+                                    #id="ngModel">
+                                <div [hidden]="id.valid || id.pristine" class="alert alert-danger">Must be a number</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-id">Name</label>
+                                <input type="text" class="form-control" id="product-name"
+                                       required
+                                       [(ngModel)]="newProduct.name" name="product-name">                
+                            </div>
+
+                            <div class="form-group">
+                                <label for="product-id">Description</label>
+                                <input type="text" class="form-control" id="product-description"
+                                       required
+                                       [(ngModel)]="newProduct.description" name="product-description">                
+                            </div>
+
+                            <button type="button" class="btn btn-default" (click)=resetForm() >Reset</button>
+                            <button type="submit" class="btn btn-default" [disabled]="!productForm.form.valid">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+</div>
+
+

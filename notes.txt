@@ -1,0 +1,1 @@
+funkcna verzia s webpack, priklad oauth2

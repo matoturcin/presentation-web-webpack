@@ -1,0 +1,52 @@
+menu{
+    margin: 0;
+    padding: 0;    
+}
+
+ul.top_menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    text-align: center;
+}
+
+ul.top_menu li {
+    display: inline;
+}
+
+/* Style the links inside the list items */
+ul.top_menu li a {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul.top_menu li a:hover {background-color: #555;}
+
+ul.top_menu li a.active div{
+    /*color: greenyellow;*/
+    border-bottom: solid 2px;
+    border-bottom-color: greenyellow;
+}
+
+ul a.login {
+    display: inline-block;
+    color: #f2f2f2;
+    text-align: right;
+    float: right;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+ul a.login:hover {
+    background-color: #555;
+    cursor: pointer;
+}

@@ -1,0 +1,15 @@
+<menu>
+    <ul class="top_menu">        
+        <li *ngFor="let menuItem of menuItems">
+            <a [routerLink]="[menuItem.url]"  routerLinkActive="active">
+                <div>
+                    {{menuItem.name}}
+                </div>
+            </a>
+        </li>
+        <a (click)="changeLan(language_en)" class="login" #language_en lang="en">EN</a>
+        <a (click)="changeLan(language_sk)" class="login" #language_sk lang="sk">SK</a>
+        <a *ngIf="!isAuthenticated" routerLink="login" class="login">Log in</a>
+        <a *ngIf="isAuthenticated" (click)=logout() class="login">Log out {{userName}} </a>
+    </ul>
+</menu>

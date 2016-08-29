@@ -1,0 +1,26 @@
+.error {color:red;}
+button.delete-button{
+  float:right;
+  background-color: gray !important;
+  color:white;
+}
+
+.search-result{
+    position: absolute;
+}
+
+.search-result-item{
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  width:195px;
+  height: 20px;
+  padding: 5px;
+  background-color: red;
+  cursor: pointer;  
+}
+
+/*#search-box{
+  width: 200px;
+  height: 20px;
+}*/
