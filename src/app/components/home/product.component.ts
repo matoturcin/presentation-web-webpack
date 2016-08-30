@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/subscription';
 
 import { Product } from '../../model/product';
 import { ProductService } from '../../services/product/product.service';
+import { ResponseMessage } from '../../model/response-message';
 
 @Component({
     selector: '<product>',
@@ -16,6 +17,7 @@ export class ProductComponent implements OnInit {
 
     private sub: Subscription;
     private product = new Product();
+    private errorMessage: String;
 
     constructor(
         private route: ActivatedRoute,
@@ -27,7 +29,14 @@ export class ProductComponent implements OnInit {
         this.sub = this.route.params.subscribe(params => {
             let id = +params['id']; // (+) converts string 'id' to a number
             console.log(id);
-            this.productService.getProductProm(id).then(product => this.product = product);
+            this.productService.getProductProm(id)
+                .then(product => this.product = product)
+                .catch((error:any) => {
+                    console.log(error);
+                    let message = error.json() as ResponseMessage;
+                    this.errorMessage = message.message;
+                    
+                });
             console.log(this.product);
         });
     }

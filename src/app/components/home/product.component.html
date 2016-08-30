@@ -1,4 +1,7 @@
 <h1>Product detail</h1>
+<div *ngIf="errorMessage" class="alert alert-danger">
+  <strong>{{errorMessage}}</strong>
+</div>
 <button (click)=gotoHome()>GoBack</button>
 <span>Product name: {{product.name}}</span>
 
