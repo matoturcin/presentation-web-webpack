@@ -9,7 +9,6 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Product } from '../../model/product';
 import { ProductService } from '../../services/product/product.service';
 import { SearchService } from '../../services/search/search.service';
-import { SearchComponent } from '../search/search.component';
 
 @Component({
     selector: 'home-page',
@@ -18,8 +17,7 @@ import { SearchComponent } from '../search/search.component';
     providers: [
         ProductService,
         SearchService
-    ],
-    directives: [SearchComponent]
+    ]
 })
 export class HomeComponent implements OnInit {
 

@@ -21,6 +21,7 @@ export class OwnerService {
                 jsonObject.name);
             return Observable.of(owner)
         };
+        
         return this.commonService.getList(this.url, deserializer);
     }
 }

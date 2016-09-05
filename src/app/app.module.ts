@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ProductRegistrationFormComponent } from './components/product-registration/product-registration-form.component';
 import { ProductComponent } from './components/home/product.component';
 import { PageNotFoundComponent } from './components/general/page-not-found.component';
+import { SearchComponent } from './components/search/search.component';
 
 import { OwnerModule } from './modules/owner/owner.module';
 
@@ -40,6 +41,7 @@ import { OwnerModule } from './modules/owner/owner.module';
         HomeComponent,
         LoginComponent,
         ProductRegistrationFormComponent,
+        SearchComponent,
         AppComponent
     ],
     providers: [appRoutingProviders],

@@ -14,12 +14,20 @@ export class CommonServiceImpl<T> implements CommonService<T>{
     
     constructor(private http: Http) { }
     
-    getList(url: string, deserializer: Deserializer<T> = this.deserializer){        
+    getList(url: string, deserializer: Deserializer<T> = this.deserializer) : Observable<T[]>{        
         return this.http.get(url)
-            .map((resp) => {console.log('resp ' + resp); console.log('resp.json() ' + resp.json()); return resp.json(); })
-            .mergeMap((array: Array<any>) => {console.log('array ' + array); console.log('Observable.from(array) ' + Observable.from(array)); return Observable.from(array)})
-            .mergeMap((obj: any) =>  {console.log('obj ' + obj); console.log('deserializer(obj) ' + deserializer(obj)); return deserializer(obj)})
+            .map((resp) => resp.json())
+            .mergeMap((array: Array<any>) => Observable.from(array))
+            .mergeMap((obj: any) =>  deserializer(obj))
             .toArray()
+    }
+    
+    getListTest(url: string, deserializer: Deserializer<T> = this.deserializer) : Observable<T[]>{        
+        return this.http.get(url)
+            .map((resp) => resp.json() as T[])
+//            .mergeMap((array: Array<T>) => Observable.from(array))
+//            .mergeMap((obj: T) =>  deserializer(obj))
+//            .toArray()
     }
 }
 

@@ -24,7 +24,6 @@ import { CommonModule }  from '@angular/common';
     providers: [
         DialogService,
         CanDeactivateGuard
-    ],
-    bootstrap: [OwnerComponent]
+    ]
 })
 export class OwnerModule { }
