@@ -7,7 +7,7 @@ import { DialogService }  from '../services/dialog.service';
 @Component({
     template: `<h1>Owner detail</h1>
         <button (click)=save()>Save</button>
-        <button (click)=cancel()>Discard</button>
+        <button (click)=cancel()>Discard</button>        
     `
 })
 export class OwnerDetailComponent implements OnInit {

@@ -10,7 +10,7 @@ import { Product } from '../../model/product';
 @Injectable()
 export class ProductService {
 
-    private productUrl = 'http://localhost:8080/RestTest/test/product';
+    private productUrl = 'http://localhost:8080/RestTest/rest/product';
 
     constructor(private http: Http) { }
 
@@ -39,6 +39,7 @@ export class ProductService {
         let url = this.productUrl + '/list';
         return this.http.get(url)
             .map(response => response.json() as Product[]);
+//            .map((array) => array.sort((a, b) => a.oid - b.oid));
     }
 
     addProduct(product: Product) {

@@ -6,7 +6,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class MainMenuService {
 
-    private menuItemsUrl = 'http://localhost:8080/RestTest/test/menu/items';
+    private menuItemsUrl = 'http://localhost:8080/RestTest/rest/menu/items';
 
     constructor(private http: Http) { }
 

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { OwnerListComponent }    from './components/owner-list.component';
+
+import { Product } from '../../model/product';
 
 @Component({
     styles: ['.active{color: red}'],
@@ -11,8 +14,11 @@ import { Component } from '@angular/core';
       </nav>
         <router-outlet></router-outlet>
     `
+    
 })
 export class OwnerComponent {
+
+    products: Product[];
 
 }
 

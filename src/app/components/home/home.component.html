@@ -87,6 +87,8 @@
     </div>
 
     <br/>
+    
+    <li *ngFor="let owner of owners | async">{{owner.name}}</li>
 
 </div>
 
