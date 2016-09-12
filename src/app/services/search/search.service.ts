@@ -5,7 +5,7 @@ import { Product }           from '../../model/product';
 @Injectable()
 export class SearchService {
     
-    private productUrl = 'http://localhost:8080/RestTest/test/product/search/';
+    private productUrl = 'http://localhost:8080/RestTest/rest/product/search/';
     
     constructor(private http: Http) { }
     

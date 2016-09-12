@@ -22,12 +22,10 @@ export class CommonServiceImpl<T> implements CommonService<T>{
             .toArray()
     }
     
-    getListTest(url: string, deserializer: Deserializer<T> = this.deserializer) : Observable<T[]>{        
+    
+    getListTest(url: string) : Observable<T[]>{        
         return this.http.get(url)
-            .map((resp) => resp.json() as T[])
-//            .mergeMap((array: Array<T>) => Observable.from(array))
-//            .mergeMap((obj: T) =>  deserializer(obj))
-//            .toArray()
+            .map((resp) => resp.json())
     }
 }
 

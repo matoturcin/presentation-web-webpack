@@ -22,7 +22,7 @@ import { SearchService } from '../../services/search/search.service';
 export class HomeComponent implements OnInit {
 
     active = true;
-    products: Observable<Product[]>;
+    products: Product[];
     @Input() product: Product;
     newProduct = new Product();
     edit = false;
@@ -31,18 +31,20 @@ export class HomeComponent implements OnInit {
     private searchTerms = new Subject<string>();
     selectedId: number;
     language: string = "en";
+    showDialog: boolean = false;
+    pageNumber = 1;
 
     constructor(
-            private productService: ProductService,
-            private searchService: SearchService,
-            private router: Router,
-            private route: ActivatedRoute,
-            private translate: TranslateService) {}
+        private productService: ProductService,
+        private searchService: SearchService,
+        private router: Router,
+        private route: ActivatedRoute,
+        private translate: TranslateService) { }
 
     ngOnInit() {
         this.product = new Product();
 
-        let productsInit = this.productService.getProductsObs();
+        let productsInit = this.productService.getProductsPaging(this.pageNumber);
         let productsSearch = this.searchTerms
             .debounceTime(300)        // wait for 300ms pause in events
             .distinctUntilChanged()   // ignore if next search term is same as previous
@@ -50,38 +52,39 @@ export class HomeComponent implements OnInit {
                 // return the http search observable
                 ? this.searchService.search(term)
                 // or the observable of empty heroes if no search term
-                : this.productService.getProductsObs()))
+                : this.productService.getProductsPaging(this.pageNumber)))
             .catch(error => {
                 // TODO: real error handling
                 console.log(error);
-                return Observable.of<Product[]>([]);
+                return ([]);
             });
-        this.sub = productsInit.concat(productsSearch).subscribe(res => this.products = Observable.of<Product[]>(res));
+        this.sub = productsInit.concat(productsSearch).subscribe(products => this.updateProducts(products));
 
         this.sub2 = this.route
             .params
             .subscribe(params => {
                 this.selectedId = +params['id'];
             });
-            
+
         this.sub2 = this.route
             .queryParams
             .subscribe(params => {
                 this.language = params['lan'] ? params['lan'] : this.language;
                 console.log(this.language);
                 this.translate.use(this.language);
-            }); 
-            
-                  
-        
+            });
+
+
+
     }
 
     onSelect(product: Product) {
         this.router.navigate(['/home', product.id]);
     }
 
-    search(term: string) {
+    search(term: string) {        
         console.log(term);
+        this.pageNumber = 1;
         this.searchTerms.next(term);
     }
 
@@ -98,6 +101,17 @@ export class HomeComponent implements OnInit {
     resetForm() {
         this.newProduct = new Product();
         this.edit = false;
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
+    }
+
+    showDialogForm() {
+        this.resetForm();
+        this.showDialog = true;
+    }
+
+    hideDialogForm() {
+        this.showDialog = false;
     }
 
     onSubmit() {
@@ -114,11 +128,37 @@ export class HomeComponent implements OnInit {
 
     getAllProducts() {
         console.log("get products");
-        this.productService.getProductsObs().subscribe(products => this.products = Observable.of<Product[]>(products));
+        this.productService.getProductsPaging(this.pageNumber).subscribe(products => this.updateProducts(products));
+    }
+    
+    getProductsPaging() {
+        console.log("get products");
+        this.productService.getProductsPaging(this.pageNumber).subscribe(products => this.appendProducts(products));
     }
 
     ngOnDestroy() {
         this.sub.unsubscribe();
         this.sub2.unsubscribe();
     }
+
+    onScroll(event: Event) {
+        var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+        var body = document.body, html = document.documentElement;
+        var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+        var windowBottom = windowHeight + window.pageYOffset;
+        
+        if (windowBottom >= docHeight){
+            this.pageNumber = this.pageNumber + 1;
+            this.getProductsPaging();
+        }
+    }
+    
+    private updateProducts(products: Product[]){
+        this.products = products;
+    }
+    
+    private appendProducts(products: Product[]){
+        this.products.push(...products);
+    }
+    
 }

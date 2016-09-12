@@ -17,20 +17,20 @@
     <a (click)="clearSearch()">clear search</a>
 </div>
 
-<button type="button" class="btn btn-info btn-lg" (click)=resetForm() data-toggle="modal" data-target="#myModal">Add product</button>
+<button type="button" class="btn btn-info btn-lg" (click)=showDialogForm()>Add product</button>
 
-<div class="products-area">
+<div class="products-area" (window:scroll)="onScroll($event)">
 
     <ul class="list-group">
         <div>
-        <li class="list-group-item" [class.highlight]="product.id == selectedId" *ngFor="let product of products | async">
+        <li class="list-group-item" [class.highlight]="product.id == selectedId" *ngFor="let product of products">
             <div class="product-info" routerLink="/home/{{product.id}}">
                 <span class="product-id badge">{{product.id}}</span>
                 <span class="product-name">  {{product.name}} </span>
                 <span (click)=onSelect(product) class="product-description">{{product.description}}</span>
             </div>
             <div class="product-buttons">
-                <a data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-pencil" (click)=onEdit(product) ></a>
+                <a (click)=showDialogForm() class="glyphicon glyphicon-pencil" (click)=onEdit(product) ></a>
                 <a (click)=onDelete(product) class="delete-link glyphicon glyphicon-trash"></a>
             </div>
         </li>
@@ -38,13 +38,13 @@
     </ul>
 
     <!-- Modal -->
-    <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal fade" [ngClass]="{in: showDialog, modalOpen: showDialog}" id="myModal" role="dialog" >
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close" (click)=hideDialogForm() data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Modal Header</h4>
                 </div>
                 <div class="modal-body">
@@ -80,15 +80,12 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" (click)=hideDialogForm() class="btn btn-default">Close</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <br/>
-    
-    <li *ngFor="let owner of owners | async">{{owner.name}}</li>
+    <div *ngIf=showDialog class="modal-backdrop fade in"></div>
 
 </div>
 

@@ -1,5 +1,9 @@
 <p>test text</p>
 <ul>
-    <li *ngFor="let owner of owners">{{owner.forename}} {{owner.familyname}}</li>
+    <li *ngFor="let owner of owners; let i = index;">{{i}} - {{owner.name}}
+        <ul>
+            <li *ngFor="let car of owner.cars">{{car.name}}</li>
+        </ul>
+    </li>
 </ul>
 

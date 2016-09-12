@@ -39,7 +39,12 @@ export class ProductService {
         let url = this.productUrl + '/list';
         return this.http.get(url)
             .map(response => response.json() as Product[]);
-//            .map((array) => array.sort((a, b) => a.oid - b.oid));
+    }
+    
+    getProductsPaging(page: number, pageSize: number = 6): Observable<Product[]> {
+        let url = this.productUrl + '/list/' + page + '/' + pageSize;
+        return this.http.get(url)
+            .map(response => response.json() as Product[]);
     }
 
     addProduct(product: Product) {

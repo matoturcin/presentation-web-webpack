@@ -9,19 +9,31 @@ import { Deserializer } from './common.service';
 @Injectable()
 export class OwnerService {
 
-    private url:string = "http://localhost:8080/RestTest/rest/owner/list";
+    private url: string = "http://localhost:8080/RestTest/rest/owner/list";
 
     constructor(private commonService: CommonServiceImpl<Owner>,
-                private http: Http) { }
-    
-    getList() : Observable<Owner[]>{
+        private http: Http) { }
+
+    getList(): Observable<Owner[]> {
         let deserializer: Deserializer<Owner> = (jsonObject: any) => {
-            let owner = new Owner(jsonObject.id, 
-                jsonObject.name, 
+            let owner = new Owner(jsonObject.id,
+                jsonObject.name,
                 jsonObject.name);
             return Observable.of(owner)
         };
-        
-        return this.commonService.getList(this.url, deserializer);
+
+        return this.commonService.getList(this.url);
     }
+
+    //    getList(): Observable<Owner[]> {
+    //        let jsonResponse = this.commonService.getListTest(this.url);
+    //        let result = jsonResponse.mergeMap((jsonObject: Array<any>) => Observable.from(jsonObject))
+    //        .mergeMap((jsonObject: any) => {
+    //                let owner = new Owner(jsonObject.id, 
+    //                            jsonObject.name, 
+    //                            jsonObject.name);
+    //                return Observable.of(owner);
+    //            }).toArray();
+    //        return result;
+    //    }
 }

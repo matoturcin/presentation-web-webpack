@@ -1,6 +1,8 @@
 export class Car {
-    id: number;
-    name: string;
-    color: string;
+    constructor(
+        id: number,
+        name: string,
+        color: string
+    ){}
 }
 
