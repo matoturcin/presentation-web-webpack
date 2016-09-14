@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
 
@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
     private sub2: Subscription;
     private searchTerms = new Subject<string>();
     selectedId: number;
-    language: string = "en";
     showDialog: boolean = false;
     pageNumber = 1;
 
@@ -38,8 +37,7 @@ export class HomeComponent implements OnInit {
         private productService: ProductService,
         private searchService: SearchService,
         private router: Router,
-        private route: ActivatedRoute,
-        private translate: TranslateService) { }
+        private route: ActivatedRoute) { }
 
     ngOnInit() {
         this.product = new Product();
@@ -65,24 +63,9 @@ export class HomeComponent implements OnInit {
             .subscribe(params => {
                 this.selectedId = +params['id'];
             });
-
-        this.sub2 = this.route
-            .queryParams
-            .subscribe(params => {
-                this.language = params['lan'] ? params['lan'] : this.language;
-                console.log(this.language);
-                this.translate.use(this.language);
-            });
-
-
-
     }
 
-    onSelect(product: Product) {
-        this.router.navigate(['/home', product.id]);
-    }
-
-    search(term: string) {        
+    search(term: string) {
         console.log(term);
         this.pageNumber = 1;
         this.searchTerms.next(term);
@@ -130,7 +113,7 @@ export class HomeComponent implements OnInit {
         console.log("get products");
         this.productService.getProductsPaging(this.pageNumber).subscribe(products => this.updateProducts(products));
     }
-    
+
     getProductsPaging() {
         console.log("get products");
         this.productService.getProductsPaging(this.pageNumber).subscribe(products => this.appendProducts(products));
@@ -144,21 +127,21 @@ export class HomeComponent implements OnInit {
     onScroll(event: Event) {
         var windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
         var body = document.body, html = document.documentElement;
-        var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+        var docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
         var windowBottom = windowHeight + window.pageYOffset;
-        
-        if (windowBottom >= docHeight){
+
+        if (windowBottom >= docHeight) {
             this.pageNumber = this.pageNumber + 1;
             this.getProductsPaging();
         }
     }
-    
-    private updateProducts(products: Product[]){
+
+    private updateProducts(products: Product[]) {
         this.products = products;
     }
-    
-    private appendProducts(products: Product[]){
+
+    private appendProducts(products: Product[]) {
         this.products.push(...products);
     }
-    
+
 }

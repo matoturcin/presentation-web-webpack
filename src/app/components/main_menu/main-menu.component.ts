@@ -3,7 +3,7 @@ import { MainMenuService } from '../../services/menu/main-menu.service';
 import { MenuItem } from '../../model/main-menu';
 //import { AuthService } from '../../services/auth/auth.service';
 import { AuthMockService } from '../../services/auth/auth-mock.service';
-import { Router }      from '@angular/router';
+import { Router, NavigationExtras }      from '@angular/router';
 
 @Component({
     selector: 'main-menu',
@@ -17,13 +17,14 @@ export class MainMenuComponent implements OnInit {
         private router: Router) { }
 
     menuItems: MenuItem[];
+    language: string = 'en';
 
     ngOnInit() {
         this.getMainMenuItems();
     }
 
     getMainMenuItems() {
-        this.mainMenuService.getMenuItems().then(menuItems => this.menuItems = menuItems);
+        this.mainMenuService.getMenuItems().subscribe(menuItems => this.menuItems = menuItems);
     }
 
     get isAuthenticated() {
@@ -37,9 +38,16 @@ export class MainMenuComponent implements OnInit {
     }
 
     changeLan(lang: any) {
-        let urlTree = this.router.parseUrl(this.router.url);        
+        let navigationExtras: NavigationExtras = {
+            preserveQueryParams: true,
+            preserveFragment: true,
+            queryParams: { lan: lang.lang }
+        };
+        
+        let urlTree = this.router.parseUrl(this.router.url);
         urlTree.queryParams = { lan: lang.lang };
-        this.router.navigateByUrl(urlTree);
+        this.language = lang.lang;
+        this.router.navigateByUrl(urlTree, navigationExtras);
     }
 
     get userName() {

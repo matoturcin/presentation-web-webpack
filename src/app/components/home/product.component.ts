@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, NavigationExtras } from '@angular/router';
 import { Subscription } from 'rxjs/subscription';
 
 import { Product } from '../../model/product';
@@ -42,8 +42,11 @@ export class ProductComponent implements OnInit {
     }
 
     gotoHome() {
+        let navigationExtras: NavigationExtras = {
+            preserveQueryParams: true
+          };
         let productId = this.product ? this.product.id : null;
-        this.router.navigate(['/home', { id: productId, foo: 'foo' }]);
+        this.router.navigate(['/home', { id: productId, foo: 'foo' }], navigationExtras);
     }
 
     ngOnDestroy() {

@@ -1,7 +1,7 @@
 <menu>
     <ul class="top_menu">        
         <li *ngFor="let menuItem of menuItems">
-            <a [routerLink]="[menuItem.url]"  routerLinkActive="active">
+            <a [routerLink]="[menuItem.url]" preserveQueryParams routerLinkActive="active">
                 <div>
                     {{menuItem.name}}
                 </div>

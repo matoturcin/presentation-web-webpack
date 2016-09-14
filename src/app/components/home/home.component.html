@@ -19,27 +19,31 @@
 
 <button type="button" class="btn btn-info btn-lg" (click)=showDialogForm()>Add product</button>
 
+<a [routerLink]="['/product-registration']" preserveQueryParams>test</a>
+
 <div class="products-area" (window:scroll)="onScroll($event)">
 
     <ul class="list-group">
         <div>
-        <li class="list-group-item" [class.highlight]="product.id == selectedId" *ngFor="let product of products">
-            <div class="product-info" routerLink="/home/{{product.id}}">
-                <span class="product-id badge">{{product.id}}</span>
-                <span class="product-name">  {{product.name}} </span>
-                <span (click)=onSelect(product) class="product-description">{{product.description}}</span>
-            </div>
-            <div class="product-buttons">
-                <a (click)=showDialogForm() class="glyphicon glyphicon-pencil" (click)=onEdit(product) ></a>
-                <a (click)=onDelete(product) class="delete-link glyphicon glyphicon-trash"></a>
-            </div>
-        </li>
+            <li class="list-group-item" [class.highlight]="product.id == selectedId" *ngFor="let product of products">            
+                <div class="product-info">
+                    <a [routerLink]="['/home/',product.id]" preserveQueryParams>
+                        <span class="product-id badge">{{product.id}}</span>
+                        <span class="product-name">  {{product.name}} </span>
+                        <span class="product-description">{{product.description}}</span>
+                    </a>
+                </div>
+                <div class="product-buttons">
+                    <a (click)=showDialogForm() class="glyphicon glyphicon-pencil" (click)=onEdit(product) ></a>
+                    <a (click)=onDelete(product) class="delete-link glyphicon glyphicon-trash"></a>
+                </div>
+            </li>
         </div>
     </ul>
 
     <!-- Modal -->
     <div class="modal fade" [ngClass]="{in: showDialog, modalOpen: showDialog}" id="myModal" role="dialog" >
-        <div class="modal-dialog">
+         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">

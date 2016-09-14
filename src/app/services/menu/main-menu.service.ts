@@ -12,9 +12,7 @@ export class MainMenuService {
 
     getMenuItems() {
         return this.http.get(this.menuItemsUrl)
-            .toPromise()
-            .then(response => response.json() as MenuItem[])
-            .catch(this.handleError);
+            .map(response => response.json() as MenuItem[]);
     }
 
     private handleError(error: any) {
