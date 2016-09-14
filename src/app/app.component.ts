@@ -24,18 +24,16 @@ export class AppComponent {
             private translate: TranslateService,
             private route: ActivatedRoute) 
         {        
-        translate.setDefaultLang('en');
-        translate.use('en');
+        translate.setDefaultLang(this.language);
+        translate.use(this.language);
         
-        
-        
-        this.route
-            .queryParams
-            .subscribe(params => {
-                this.language = params['lan'] ? params['lan'] : this.language;
-                console.log(this.language);
-                this.translate.use(this.language);
-            });
+//        this.route
+//            .queryParams
+//            .subscribe(params => {
+//                this.language = params['lan'] ? params['lan'] : this.language;
+//                console.log(this.language);
+//                this.translate.use(this.language);
+//            });
     }
     
     title = 'Presentation web';

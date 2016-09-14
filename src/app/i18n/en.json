@@ -1,5 +1,8 @@
 {
     "home": {
         "title": "Products page"
-    }    
+    },
+    "product-registration": {
+        "title": "Product registration"
+    }
 }

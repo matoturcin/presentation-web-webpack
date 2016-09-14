@@ -50,3 +50,8 @@ ul a.login:hover {
     background-color: #555;
     cursor: pointer;
 }
+
+ul a.login-active {
+    background-color: #555;
+    cursor: pointer;
+}

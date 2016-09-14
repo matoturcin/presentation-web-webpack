@@ -1,6 +1,6 @@
 <div  [hidden]="submitted">
     <div class="container">
-        <h1>Hero Form</h1>
+        <h1>{{ 'product-registration.title' | translate:{value: param} }}</h1>
         <form *ngIf="active" (ngSubmit)="onSubmit()" #heroForm="ngForm">
             <div class="form-group">
                 <label for="name">Name</label>
