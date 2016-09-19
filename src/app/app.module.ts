@@ -18,6 +18,8 @@ import { PageNotFoundComponent } from './components/general/page-not-found.compo
 import { SearchComponent } from './components/search/search.component';
 
 import { OwnerModule } from './modules/owner/owner.module';
+import './i18n/en.json';
+import './i18n/sk.json';
 
 @NgModule({
     imports: [

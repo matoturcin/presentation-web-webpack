@@ -56,4 +56,4 @@ export const appRoutingProviders: any[] = [
     AuthMockService,
     WindowService
 ];
-export const routing = RouterModule.forRoot(appRoutes);
+export const routing = RouterModule.forRoot(appRoutes, { useHash: true });

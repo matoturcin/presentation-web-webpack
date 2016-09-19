@@ -25,13 +25,11 @@
 
     <ul class="list-group">
         <div>
-            <li class="list-group-item" [class.highlight]="product.id == selectedId" *ngFor="let product of products">            
-                <div class="product-info">
-                    <a [routerLink]="['/home/',product.id]" preserveQueryParams>
-                        <span class="product-id badge">{{product.id}}</span>
-                        <span class="product-name">  {{product.name}} </span>
-                        <span class="product-description">{{product.description}}</span>
-                    </a>
+            <li class="list-group-item" [class.highlight]="product.id == selectedId" *ngFor="let product of products">
+                <div class="product-info" [routerLink]="['/home/',product.id]" preserveQueryParams >
+                    <span class="product-id badge">{{product.id}}</span>
+                    <span class="product-name">  {{product.name}} </span>
+                    <span class="product-description">{{product.description}}</span>
                 </div>
                 <div class="product-buttons">
                     <a (click)=showDialogForm() class="glyphicon glyphicon-pencil" (click)=onEdit(product) ></a>

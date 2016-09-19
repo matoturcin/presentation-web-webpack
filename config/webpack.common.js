@@ -25,14 +25,20 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico|json)$/,
+                exclude: helpers.root('src', 'app', 'i18n'),
                 loader: 'file?name=assets/[name].[ext]'
             },
+            {
+                test: /\.(json)$/,
+                include: helpers.root('src', 'app', 'i18n'),
+                loader: 'file?name=assets/i18n/[name].[ext]'
+            },
             // Support for *.json files.
-//      {
-//          test: /\.json$/, 
-//          include: helpers.root('src'),
-//          loader: 'json-loader'
-//      },      
+//            {
+//                test: /\.json$/, 
+//                include: helpers.root('src', 'app'),
+//                loader: 'json-loader'
+//            },      
             {
                 test: /\.css$/,
                 exclude: helpers.root('src', 'app'),
@@ -51,17 +57,17 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             template: 'src/index.html'
-        }),
-        new CopyWebpackPlugin([
-            {
-                from: helpers.root('src', 'app', 'i18n'), // replace with your folder
-                to: 'assets/i18n'
-            },
-            {
-                from: helpers.root('src', 'app', 'img'), // replace with your folder
-                to: 'assets'
-            }
-        ])
+        })
+//        new CopyWebpackPlugin([
+//            {
+//                from: helpers.root('src', 'app', 'i18n'), // replace with your folder
+//                to: 'assets/i18n'
+//            },
+//            {
+//                from: helpers.root('src', 'app', 'img'), // replace with your folder
+//                to: 'assets'
+//            }
+//        ])
 
     ]
 };

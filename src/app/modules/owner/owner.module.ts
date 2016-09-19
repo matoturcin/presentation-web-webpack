@@ -8,6 +8,8 @@ import { ownerRouting } from './owner.routing';
 import { DialogService } from './services/dialog.service';
 import { CanDeactivateGuard } from './services/can-deactivate-guard.service';
 import { CommonModule }  from '@angular/common';
+import { UpperCasePipe } from './pipes/upper-case.pipe';
+import { AnuHighlightDirective } from './directives/anu-highlight.directive';
 
 @NgModule({
     imports: [
@@ -19,7 +21,9 @@ import { CommonModule }  from '@angular/common';
         OwnerListComponent,
         OwnerDetailComponent,        
         OwnerComponent,        
-        OwnerAdminComponent
+        OwnerAdminComponent,
+        UpperCasePipe,
+        AnuHighlightDirective
     ],
     providers: [
         DialogService,

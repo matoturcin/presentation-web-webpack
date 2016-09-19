@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Subject } from 'rxjs/Subject';
 
+
 @Component({
     selector: 'owner-list',
     templateUrl: './owner-list.component.html',
@@ -16,6 +17,7 @@ import { Subject } from 'rxjs/Subject';
         CarService,
         CommonServiceImpl
     ]
+    
 })
 export class OwnerListComponent implements OnInit {
 

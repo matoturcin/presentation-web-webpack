@@ -1,8 +1,16 @@
-<p>test text</p>
+
+<h1>My First Attribute Directive</h1>
+<h4>Pick a highlight color</h4>
+<div>
+    <input type="radio" name="colors" (click)="color='lightgreen'">Green
+    <input type="radio" name="colors" (click)="color='yellow'">Yellow
+    <input type="radio" name="colors" (click)="color='cyan'">Cyan
+</div>
+<p [anuHighlight]="color">test text</p>
 <ul>
     <li *ngFor="let owner of owners; let i = index;">{{i}} - {{owner.name}}
         <ul>
-            <li *ngFor="let car of owner.cars">{{car.name}}</li>
+            <li *ngFor="let car of owner.cars">{{car.name | UPPER}}</li>
         </ul>
     </li>
 </ul>
