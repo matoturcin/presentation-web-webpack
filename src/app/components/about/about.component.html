@@ -1,19 +1,42 @@
 <div class="well">
-    <p>
-        Basic information about us
-    </p>
+    <h1>
+        Examples of angular2 material
+    </h1>
+</div>
+<div class="container-fluid">
+    <h1>Hello World!</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <section>
+                <md-card class="demo-card demo-basic">
+                    <md-toolbar color="primary">Basic</md-toolbar>
+                    <md-card-content>
+                        <form>
+                            <md-input class="demo-full-width" placeholder="Company (disabled)" disabled value="Anritsu">
+                            </md-input>
+
+                            <table style="width: 100%" cellspacing="0"><tr>
+                                    <td><md-input placeholder="First name" style="width: 100%"></md-input></td>
+                                <td><md-input placeholder="Long Last Name That Will Be Truncated" style="width: 100%"></md-input></td>
+                                </tr></table>
+                            <p>
+                            <md-input class="demo-full-width" placeholder="Address" value="1600 Amphitheatre Pkway"></md-input>
+                            <md-input class="demo-full-width" placeholder="Address 2"></md-input>
+                            </p>
+                            <table style="width: 100%" cellspacing="0"><tr>
+                                    <td><md-input class="demo-full-width" placeholder="City" value="Mountain View"></md-input></td>
+                                <td><md-input class="demo-full-width" placeholder="State" maxLength="2" value="CA"></md-input></td>
+                                <td><md-input #postalCode class="demo-full-width" maxLength="5"
+                                    placeholder="Postal Code"
+                                    value="94043">
+                                </md-input></td>
+                                </tr></table>
+                            <button type="submit" md-raised-button color="primary">Submit</button>
+                        </form>
+                    </md-card-content>
+                </md-card>                
+            </section>
+        </div>
+    </div>
 </div>
 
-<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown
-    <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-    <li><a href="#">Something else here</a></li>
-    <li role="separator" class="divider"></li>
-    <li><a href="#">Separated link</a></li>
-  </ul>
-</div>

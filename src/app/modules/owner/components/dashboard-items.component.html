@@ -1,0 +1,9 @@
+<ng-content header></ng-content>
+<ng-content body></ng-content>
+<div *ngFor="let item of data">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let xx of item | values"> {{xx}} </li>
+    </ul>    
+</div>
+
+

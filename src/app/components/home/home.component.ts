@@ -40,6 +40,10 @@ export class HomeComponent implements OnInit {
         private route: ActivatedRoute) { }
 
     ngOnInit() {
+        
+        console.log(localStorage.getItem("name"));
+        localStorage.clear();
+        
         this.product = new Product();
 
         let productsInit = this.productService.getProductsPaging(this.pageNumber);

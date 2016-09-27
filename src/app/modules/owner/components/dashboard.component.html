@@ -1,0 +1,23 @@
+
+<div class="row">
+    <div class="row">
+        <div class="col-lg-2 col-sm-3 col-xs-4">
+            <dashboard-card [data]="cars">
+                <h2>Cars</h2>
+            </dashboard-card>
+        </div>
+        <div class="col-lg-2 col-sm-3 col-xs-4">
+            <dashboard-card [data]="owners">
+                <h2>Owners</h2>
+            </dashboard-card>
+        </div>
+        <div class="col-lg-2 col-sm-3 col-xs-4">
+            <dashboard-card [data]="phones">
+                <h2>Phones</h2>
+            </dashboard-card>
+        </div>
+    </div>
+</div>
+
+<div #dynamicComponentContainer></div>
+<input class="btn-primary" (click)="addComponent(text='added')" type="button" name="Add" value="Add component"/>

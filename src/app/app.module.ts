@@ -6,6 +6,10 @@ import { AppComponent }  from './app.component';
 import { HttpModule } from '@angular/http';
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
 import { Http } from '@angular/http';
+import { MdButtonModule } from '@angular2-material/button';
+import { MdInputModule } from '@angular2-material/input';
+import { MdCardModule } from '@angular2-material/card';
+import { MdToolbarModule } from '@angular2-material/toolbar';
 
 import { MainMenuComponent } from './components/main_menu/main-menu.component';
 import { AboutComponent } from './components/about/about.component';
@@ -27,6 +31,10 @@ import './i18n/sk.json';
         FormsModule,
         routing,
         HttpModule,
+        MdButtonModule,
+        MdInputModule,
+        MdCardModule,
+        MdToolbarModule,
         OwnerModule,
         TranslateModule.forRoot({
             provide: TranslateLoader,

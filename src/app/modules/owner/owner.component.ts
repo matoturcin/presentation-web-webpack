@@ -10,7 +10,8 @@ import { Product } from '../../model/product';
         <nav>
         <a routerLink="/owner" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active">List owners</a>
         <a routerLink="/owner/product/1" routerLinkActive="active" >Owner</a>
-        <a routerLink="/owner/admin" routerLinkActive="active">Owner Admin</a>
+        <a routerLink="/owner/admin" routerLinkActive="active">Owner Admin</a>\n\
+        <a routerLink="/owner/dashboard" routerLinkActive="active">Dashboard</a>
       </nav>
         <router-outlet></router-outlet>
     `

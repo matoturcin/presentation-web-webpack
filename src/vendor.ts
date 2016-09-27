@@ -12,6 +12,7 @@ import 'rxjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap-theme.min.css';
 import 'ng2-translate';
+import '@angular2-material/core/overlay/overlay.css';
 
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
